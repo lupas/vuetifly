@@ -1,0 +1,33 @@
+{
+  "name": "vuetifly",
+  "version": "0.0.1",
+  "private": false,
+  "license": "https://github.com/lupas/vuetifly/blob/master/LICENSE.md",
+  "repository": "https://github.com/lupas/vuetifly",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src"
+  ],
+  "main": "src/main.js",
+  "scripts": {
+    "publishToNpm": "npm publish"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "vue": "^2.6.10",
+    "vuetify": "^2.1.3",
+    "core-js": "^2.6.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "prettier": "^1.18.2"
+  }
+}
