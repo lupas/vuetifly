@@ -2,7 +2,7 @@
   <section>
     <v-container class="my-5" :fluid="fluid">
       <v-row v-if="title" justify="center">
-        <div class="mb-8">
+        <div class="mb-8 text-center">
           <h2 class="display-1 font-weight-medium">
             {{ title }}
           </h2>
