@@ -5,10 +5,12 @@
         <template v-slot:activator="{ on: tooltip }">
           <v-btn text v-on="{ ...tooltip, ...menu }">
             <v-img :src="getIcon(currentLanguage.id)" height="24" width="24" />
-            <span class="ml-2">{{ currentLanguage.id | capitalize }}</span>
+            <span class="ml-2" v-if="showText">{{
+              currentLanguage.id | capitalize
+            }}</span>
           </v-btn>
         </template>
-        <span>Im A ToolTip</span>
+        <span>{{ tooltipText }}</span>
       </v-tooltip>
     </template>
     <v-list light>
@@ -39,6 +41,14 @@ export default {
     languages: {
       type: Array,
       required: true
+    },
+    tooltipText: {
+      type: String,
+      default: 'Change Language'
+    },
+    showText: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

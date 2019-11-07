@@ -9,3 +9,6 @@ export { default as FlyEmptySection } from './PageSections/FlyEmptySection'
 
 // Others
 export { default as FlyLanguageSwitcher } from './FlyLanguageSwitcher'
+
+// Combos
+export { default as FlyAlertCombo } from './FlyAlert'
