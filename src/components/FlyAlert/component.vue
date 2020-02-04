@@ -7,7 +7,7 @@
       v-model="snackbarLink"
       :color="color"
     >
-      {{ snackbarText }}
+      <span @click="showAlert">{{ snackbarText }}</span>
       <v-btn text @click.native="hideSnackbar">Close</v-btn>
     </v-snackbar>
   </v-card>
@@ -21,6 +21,7 @@ export default {
     ...mapState({
       snackbarIsShown: state => state.vuetifly.FlyAlert.isShown,
       snackbarText: state => state.vuetifly.FlyAlert.text,
+      snackbarDetailText: state => state.vuetifly.FlyAlert.detailText,
       color: state => state.vuetifly.FlyAlert.color
     }),
     snackbarLink: {
@@ -43,6 +44,11 @@ export default {
     }),
     hideSnackbar() {
       this.vuexToggleSnackbar({ isShown: false, color: null, text: null })
+    },
+    showAlert() {
+      if (this.snackbarDetailText) {
+        alert(this.snackbarDetailText)
+      }
     }
   }
 }
