@@ -21,7 +21,6 @@ export default {
       for (const fatalErrorRegExp of fatalErrorsRegExp) {
         const re = new RegExp(fatalErrorRegExp)
         const isMatch = re.test(error) || re.test(error.message)
-        console.log(error)
         if (isMatch && window.location.hash !== '#retry') {
           if (this.$sentry) {
             this.$sentry.captureMessage(
@@ -29,8 +28,11 @@ export default {
             )
           }
           // mark the page to don't trigger reload infinitely
-          window.location.hash = '#retry'
-          window.location.reload(true)
+          setTimeout(function() {
+            // wait a second so the sentry message can be sent
+            window.location.hash = '#retry'
+            window.location.reload(true)
+          }, 1000)
           return
         }
       }
