@@ -1,9 +1,6 @@
-export default (
-  state,
-  { isShown = true, text = '', color = 'success', detailText }
-) => {
+export default (state, { isShown = true, text, color, errorDetails }) => {
   state.vuetifly.FlyAlert.isShown = isShown
   state.vuetifly.FlyAlert.text = text
-  state.vuetifly.FlyAlert.detailText = detailText
+  state.vuetifly.FlyAlert.errorDetails = errorDetails
   state.vuetifly.FlyAlert.color = color
 }

@@ -1,19 +1,45 @@
 export default {
   methods: {
-    showFlyAlert({
-      color = 'success',
-      text = '',
-      defaultError = false,
-      detailText = null
-    }) {
-      if (defaultError) {
-        color = 'error'
-        text = 'Something went wrong, please try again.'
-      }
+    showFlyAlert(text, color, errorDetails) {
       this.$store.commit('FlyAlertMutation', {
         color,
         text,
-        detailText
+        errorDetails
+      })
+    },
+    showFlySuccessAlert(text) {
+      this.$store.commit('FlyAlertMutation', {
+        color: 'success',
+        text,
+        errorDetails: null
+      })
+    },
+    showFlyErrorAlert(error, text = 'Something went wrong, please try again.') {
+      const fatalErrorsRegExp = [
+        'INTERNAL ASSERTION FAILED: AsyncQueue is already failed'
+      ]
+      for (const fatalErrorRegExp of fatalErrorsRegExp) {
+        const re = new RegExp(fatalErrorRegExp)
+        const isMatch = re.test(error) || re.test(error.message)
+        console.log(error)
+        if (isMatch && window.location.hash !== '#retry') {
+          if (this.$sentry) {
+            this.$sentry.captureMessage(
+              `Error successfully captured and page reloaded: ${error}`
+            )
+          }
+          // mark the page to don't trigger reload infinitely
+          window.location.hash = '#retry'
+          window.location.reload(true)
+          return
+        }
+      }
+
+      // Show the alert
+      this.$store.commit('FlyAlertMutation', {
+        color: 'error',
+        text,
+        errorDetails: error
       })
     }
   }

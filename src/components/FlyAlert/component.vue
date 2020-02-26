@@ -21,7 +21,7 @@ export default {
     ...mapState({
       snackbarIsShown: state => state.vuetifly.FlyAlert.isShown,
       snackbarText: state => state.vuetifly.FlyAlert.text,
-      snackbarDetailText: state => state.vuetifly.FlyAlert.detailText,
+      snackbarErrorDetails: state => state.vuetifly.FlyAlert.errorDetails,
       color: state => state.vuetifly.FlyAlert.color
     }),
     snackbarLink: {
@@ -46,8 +46,8 @@ export default {
       this.vuexToggleSnackbar({ isShown: false, color: null, text: null })
     },
     showAlert() {
-      if (this.snackbarDetailText) {
-        alert(this.snackbarDetailText)
+      if (this.snackbarErrorDetails) {
+        alert(this.snackbarErrorDetails)
       }
     }
   }
